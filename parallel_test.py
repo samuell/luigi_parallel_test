@@ -5,12 +5,11 @@ import time
 
 class InData(luigi.ExternalTask):
     
-    def __init__(self, chunk_no):
-        self.chunk_no = chunk_no
+    chunk_no = luigi.IntParameter(default=0)
     
     def output(self):
-        return luigi.LocalTarget("input_%d.txt" % self.chunk_no)
-      
+        return luigi.LocalTarget("indata_%d.txt" % self.chunk_no)
+              
 
 class Merged(luigi.Task):
         
