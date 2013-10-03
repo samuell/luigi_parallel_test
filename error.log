@@ -1,0 +1,51 @@
+/usr/local/lib/python2.7/dist-packages/luigi/worker.py:62: UserWarning: Will only use one process when running with local in-process scheduler
+  warnings.warn("Will only use one process when running with local in-process scheduler")
+DEBUG: Checking if Merged() is complete
+ERROR: Luigi unexpected framework error while scheduling Merged()
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/luigi/worker.py", line 143, in add
+    for next in self._add(current):
+  File "/usr/local/lib/python2.7/dist-packages/luigi/worker.py", line 198, in _add_task_and_deps
+    deps = task.deps()
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 327, in deps
+    return flatten(self._requires())
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 320, in _requires
+    return flatten(self.requires())  # base impl
+  File "parallel_test.py", line 18, in requires
+    return [InData(i) for i in xrange(4)]
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 86, in __call__
+    param_values = cls.get_param_values(params, args, kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 195, in get_param_values
+    raise parameter.UnknownParameterException('%s: takes at most %d parameters (%d given)' % (exc_desc, len(positional_params), len(args)))
+UnknownParameterException: InData[args=(0,), kwargs={}]: takes at most 0 parameters (1 given)
+INFO: Sending warning email to None
+DEBUG: Emailing:
+-------------
+To: (None,)
+From: luigi-client@samuel-e743
+Subject: Luigi: Framework error while scheduling Merged()
+Message:
+Luigi framework error:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/luigi/worker.py", line 143, in add
+    for next in self._add(current):
+  File "/usr/local/lib/python2.7/dist-packages/luigi/worker.py", line 198, in _add_task_and_deps
+    deps = task.deps()
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 327, in deps
+    return flatten(self._requires())
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 320, in _requires
+    return flatten(self.requires())  # base impl
+  File "parallel_test.py", line 18, in requires
+    return [InData(i) for i in xrange(4)]
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 86, in __call__
+    param_values = cls.get_param_values(params, args, kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/luigi/task.py", line 195, in get_param_values
+    raise parameter.UnknownParameterException('%s: takes at most %d parameters (%d given)' % (exc_desc, len(positional_params), len(args)))
+UnknownParameterException: InData[args=(0,), kwargs={}]: takes at most 0 parameters (1 given)
+
+-------------
+INFO: Done scheduling tasks
+DEBUG: Asking scheduler for work...
+INFO: Done
+INFO: There are no more tasks to run at this time
+INFO: Worker was stopped. Shutting down Keep-Alive thread
